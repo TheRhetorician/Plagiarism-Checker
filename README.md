@@ -6,11 +6,15 @@
 
 
 ## General info
-This project is simple Plagiarism Detector.
+This project is a Plagiarism Detector that determines the category under which the test document falls and returns it similarity score (plagiarism score).
+
 Group members are :
-Tanay Gupta : 2018AAPS0343H
-Mudit Chaturvedi : 2018A7PS0248H
-Sristi Sharma : 2018A7PS0299H
+
+Tanay Gupta : 2018AAPS0343H : https://github.com/Tanay0101\
+
+Mudit Chaturvedi : 2018A7PS0248H : https://github.com/TheRhetorician\
+
+Sristi Sharma : 2018A7PS0299H : https://github.com/judyhopps24\
 	
 ## Dependencies
 Dependencies in the Project :
