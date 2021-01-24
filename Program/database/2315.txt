@@ -1,0 +1,41 @@
+Reinforcement learning (RL) uses a scalar numeric feedback
+from the environment to improve the behavior of the
+learner. In the case with only one agent, RL is an effective
+unsupervised learning method to solve problems with the
+Markov property. Many researchers have been trying
+to extend RL to optimize performance indices in circumstances
+where multiple agents exist and a lot of multiagent
+reinforcement learning (MARL) algorithms, and their applications
+have been proposed [3–5]. In a multiagent system
+(MAS), on one hand, the state transition distribution and
+the local immediate reward received by each agent are not
+determined by the behavior of any single agent but the
+behavior of all the agents in the system. Thus, each agent
+has to adapt to the environment and the other agents at
+the same time, which leads to the invalidity of the Markov
+property. On the other hand, if all the agents in the system
+are viewed as a single one, the joint action space will
+grow exponentially, which deteriorates the scalability of
+MARL algorithms.
+
+This paper investigates methods coordinating multiple
+agents through MARL techniques. In recent years, many
+MARL algorithms with different assumptions and goals have
+been presented to solve coordination issues in MAS. Some
+algorithms require sharing each agent’s local immediate
+reward; some algorithms require sharing each agent’s
+selected actions and even value functions or Q-value functions
+as well. The learning goal depends on the problems
+at hand. Nash equilibria have been used in optimal control
+[6, 7] and are also adopted as the learning goal by
+many MARL algorithms. Hu and Wellman [8] proposed
+Nash-Q which could converge to a Nash equilibrium in
+some repeated games. However, Nash-Q needed Q-value
+functions to be shared as well. Infinitesimal gradient ascent
+(IGA) [9] was proposed and guaranteed that the agents’
+strategies would converge to a Nash equilibrium, or average
+rewards would converge to the expected rewards of a Nash
+equilibrium in two-player two-action repeated games. Winor-
+learn fast policy with IGA (WoLF-IGA) [10] was proposed
+to address the issue that IGA would not converge to
+any Nash equilibrium in some repeated games.

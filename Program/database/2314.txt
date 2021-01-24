@@ -1,0 +1,28 @@
+Deep artificial neural networks often have far more trainable model parameters than the number of
+samples they are trained on. Nonetheless, some of these models exhibit remarkably small generalization
+error, i.e., difference between “training error” and “test error”. At the same time, it is
+certainly easy to come up with natural model architectures that generalize poorly. What is it then
+that distinguishes neural networks that generalize well from those that don’t? A satisfying answer
+to this question would not only help to make neural networks more interpretable, but it might also
+lead to more principled and reliable model architecture design.
+
+The role of explicit regularization. If the model architecture itself isn’t a sufficient regularizer, it
+remains to see how much explicit regularization helps. We show that explicit forms of regularization,
+such as weight decay, dropout, and data augmentation, do not adequately explain the generalization
+error of neural networks. Put differently:
+Explicit regularization may improve generalization performance, but is neither necessary nor by
+itself sufficient for controlling generalization error.
+In contrast with classical convex empirical risk minimization, where explicit regularization is necessary
+to rule out trivial solutions, we found that regularization plays a rather different role in deep
+learning. It appears to be more of a tuning parameter that often helps improve the final test error
+of a model, but the absence of all regularization does not necessarily imply poor generalization error.
+As reported by Krizhevsky et al. (2012), 2-regularization (weight decay) sometimes even helps
+optimization, illustrating its poorly understood nature in deep learning.
+
+Finite sample expressivity. We complement our empirical observations with a theoretical construction
+showing that generically large neural networks can express any labeling of the training
+data. More formally, we exhibit a very simple two-layer ReLU network with p = 2n+d parameters
+that can express any labeling of any sample of size n in d dimensions. A previous construction due
+to Livni et al. (2014) achieved a similar result with far more parameters, namely, O(dn): While our
+depth 2 network inevitably has large width, we can also come up with a depth k network in which
+each layer has only O(n=k) parameters.

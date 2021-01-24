@@ -1,0 +1,155 @@
+POLYGON SHADOW GENERATION 
+by 
+Peter Atherton, Kevin Weiler and Donald Greenberg 
+Program of Computer Graphics 
+Cornell University 
+ABSTRACT 
+A general purpose method for generating shadows using a polygonal coordinate data base is presented. The method is based on an object space polygon clipping hidden surface removal algorithm. Output from the program is in the same three-dimensional polygon format as the input. Thus, a shadowed data environment may be easily created and viewed from any observer position with no additional depth sorting time required for the hidden surface removal process. Shadows can also be cast by more than one light source. Since the shadows are generated in object space, the results can be used for both visual display and numerical analysis. 
+COMPUTING REVIEWS CLASSIFICATION: 3.2, 4.9, 4.40, 4.41 
+KEYWORDS: Shadow Generation, Hidden Surface Removal, Polygon Clipping, Graphics 
+I. INTRODUCTION 
+A shadow is the darkness cast by an object inter­cepting light. It falls from the side opposite the source of light. Theoretically, when the obser­ver's position is coincident with that of the light source, no shadows are visible. Shadows become visible when the viewer's position moves away from 
+the source of illumination. 
+The addition of shadows to a perspective image vastly improves the depth perception of the display. Furthermore, shadows provide valuable positional 
+information and improve the ability of the obser­ver to comprehend complex spatial environments. However, computation times and algorithmic complexity for shadow generation have prevented many im­plementations. The shadow creationmethod pre­
+sented is a natural extension of an object space hidden surface removal algorithm which uses poly­
+gon area sorting and is described in the third 
+section. A major advantage of this method is that both the input and output are in the form of a 
+three-dimensionalpolygon data structure. This 
+characteristicmeans that the shadow definitions 
+can be used for the purposes of both display and 
+analysis. 
+II. SURVEY OF EXISTING ALGORITHMS 
+Several classes of algorithms for shadow generation 
+have been previously presented. Each of these 
+approaches has inherent limitations which may re­strict their application and use. The raster scan method for shadow image creation was first imple­
+mented in 1970 by Kelley and Bouknight4,5,7al­
+though a similar procedure for line drawing images 
+has been presented by Appel.1 
+Oriented to a raster type display scope, the Kelley 
+and Bouknight method scans an object row by row to 
+determine visibility. Each time a polygon boundary 
+is crossed, a depth sort is made to determine which 
+polygonal surface is nearest the observer (Figure 
+1). Since the color of a polygon does not change 
+across its surface, the only display information 
+necessary is the location of the "key squares," 
+those raster units in each row where a color change 
+takes place. 
+Shadows may be added to an image simply by running 
+two concurrent scanning operations, one to deter­mine visible surfaces and one in image space to 
+determine shadow existence. Before scanning, a 
+list is created for each polygon linking it to any 
+other polygon that might cast a shadow upon it. 
+In 1973 Nishita and Kakamae presented a method for 
+shadow generation based on a convex polyhedron 
+clipping algorithm. This programmaintained some 
+of the benefits of the raster scan display method 
+while improving on the accuracy and versatility of 
+the shadow definitions. 
+The data input base consists of convex polyhedra, each of which may be composed of several convex polygons. Hidden surface removal from any chosen point of view is accomplishedby determining the silhouette contours of each polyhedron and using them to define its clipping border. Objects which lay behind a selected polyhedron are clipped to the window defined by the polyhedron's outside boun­daries. 
+The generation of shadowed images by this poly­hedron clipping method is accomplished in two basic 
+
+Figure 1. Concurrent scanning method of shadow display. 
+steps (Figure 2). In the first step, a view is 
+taken in the direction of the infinite light source. Using the polyhedron clipper, all the hidden sur­
+faces, which are surfaces that are in shadow, are 
+found. The entire scene is then transformed to a 
+selected view point, and all hidden surfaces are 
+removed by a raster scan method similar to that used by Bouknight and Kelley. 
+A third algorithm for generatingshadows is based 
+on the concept of computing the surface defining 
+the volume of space swept out by the shadow of an object, its umbra. The umbra surfaces are then 
+added to the data and treated as invisible surfaces which, when pierced, cause a transition into or out 
+of an object shadow. This shadow volume approach was presented by F. Crow in 1977.6 
+For any polyhedron, the shadow volume can be com­pletely described for a given light source posi­
+tion (Figure 3). The contour edges of the original 
+object, as seen from the light source, are first 
+computed. Then all planes defined by the light 
+source and the contour edges constitute the bound­
+ing surface of the shadow volume. The "near" sur­
+face of the shadow volume is defined by the sil­houette edges of the object casting the shadow. 
+The "far" surface is at an infinite distance. This volume is then clipped by the frustrum of vision 
+(or viewbox) and added to the environment data base. Any hidden surface algorithm can then be used to 
+create the display. The shadow data is treated in 
+the same manner as the original data except that it 
+is invisible. In the depth order calculations, any 
+plane behind a front facing shadow surface is in shadow. The method can be coupled with several hidden surface algorithms and has the capability 
+of effectively creating shadow volumes when the 
+illuminating light source is placed within the ori­
+ginal environment. 
+
+Figure 2. Polyhedra clipper and raster scan method of shadow display. 
+276 
+There are several restrictionswith the shadow The hidden surface removal algorithm involves four 
+image creation programs described. The major limi­tation of the double scanning method and the shadow volume method is that the shadow surfaces are not defined in object space. This precludes the use of the created shadows.for accurate computationalpur­poses. Furthermore, scan-line algorithms based on raster display devices determine their depth prior­ity in image space. This limits output portability (e.g., vector displays) and will become less effi­cient as the display resolution increases. Addi­tional problems, unique to the individual algorithms, are the imposed limitations on the environment des­cription, the potentially large increases in the environment data base, the required maintenance of non-visible polygons as possible shadow casting elements, and the necessity for recalculating sha­dows for each image. 
+To overcome these difficulties, a different 
+approach to shadow image generation based on our 
+hidden surface removal method using polygon area 
+sorting has been developed.2,10,11 This can be 
+accomplished with relative ease since the polygon 
+form of the output is the same as the polygon form 
+of the input. 
+III. POLYGON AREA SORTING HIDDEN SURFACE REMOVAL ALGORITHM 
+A program to remove hidden surfaces by polygon area sorting has been developed at Cornell's Laboratory of Computer Graphics.10,11 The basic concept of a polygon sorting hidden surface removal algorithm is that all surfaces that lay behind each unique poly­
+gonal area and within its borders are removed. 
+The algorithm proceeds from front to back across 
+the transformed object space, producing portions 
+of the final image along the way and temporarily 
+reversing direction only when an initial depth 
+sort error is detected. Output from the algorithm never overlaps on the vertical image plane since 
+each visible area has had all polygons behind it 
+removed. This polygonal area may itself be sub­
+divided recursively if there is an error in the 
+initial depth sort. 
+basic steps: 
+1) a preliminary rough depth sort 
+2) a two-dimensionalcomparison of the currently 
+most forward polygon, or template, to the remaining polygons 
+3) removal of polygons that exist behind the tem­plate and within its borders 
+4) a recursive comparisonwhen an error in the preliminary depth sort has occurred. 
+At the heart of the hidden surface removal process 
+is a polygon clipper. This algorithm considers two 
+polygons at a time, a template or clipping polygon 
+and a subject polygon. The two polygons are com­
+pared and the surfaces of the subject polygon exist­
+ing within the borders of the clipping polygon are 
+designated. Even though the polygon clipper works 
+essentially in two dimensions, all depth informa­
+tion is accurately preserved maintainingthe pre­
+cise three-dimensionalityof the polygons. 
+The polygon clipper is capable of clipping a con­cave subject polygon with holes to the borders of a concave clipping polygon with holes. This gener­ality is necessary since even when a scene is re­stricted to convex polygons, a clipping sequence could quickly yield concave areas and holes. Sur­face details such as texture or color differences can be described as polygons within the boundaries of a parent polygon. These surface details will have a minimal effect on the hidden surface removal process. 
+IV. POLYGON SHADOW ALGORITHM 
+The procedure for creating an image containing sha­dows consists of two major parts. The first is the creation of the shadow descriptions as dictated by the particular object orientations and light source position. The second is the determinationof vis­ible surfaces with their associated shadow des­criptions and is dependent upon the observer's position. 
+
+Figure 3. Shadow volume method of shadow display. 
+By using the general purpose polygon clipping hid­den surface removal algorithmpreviously described, 
+the process of generatingshadowed images can be made relatively simple (Figure 4). Shadow descrip­
+tions are found by viewing the environment from the 
+position of the light source. A hidden surface re­
+moved view from the light source position will 
+delineate the illuminated polygons which are those 
+areas not in shadow. Once defined, these illum­
+inated polygons are added to the original environ­ment and treated as surface details on their origi­nal source polygons. This general method is suit­
+able for both point light sources and parallel 
+light sources. 
+This approach has several distinct advantages. First, since the polygonal output of the hidden surface removal routines is the same as the input, the same logic can be used for the shadow genera­tion and the image display. Second, by maintaining the three-dimensionalshadow polygon output, it is possible to compute shadow areas and thus their effect on such phenomena as energy utilization. Third, by adding the shadows to the data base in the form of details attached to "parent" planes, the computational time for the hidden surface re­moval sorting process does not increase. Fourth, many views can be generated requiring only one original shadow generation cycle. Lastly, shadow views with multiple light sources require only a single pass through the hidden surface removal pro­gram from the viewpoint of each light source. At present, the general polygon shadow generation pro­cedure is only limited by the requirement of a polygonal planar data base. It has proven to be flexible, device independent, and has run effi­ciently on a large variety of environments. 
+For each display frame that is to be produced, there is a set of transformationmatrices which are used to manipulate the environment coordinate data. These transformationmatrices are of two types, view matrices and shadow matrices. The view matrices transform the environment to any selected view. There are two shadow matrices which are devoted to the creation of a shadow data base con­sisting of the original polygonal coordinate defin­itions and their associated lighted detail poly­gons (Figures 4 and 5). 
+The first of these shadow matrices is used to trans­form the entire object environment to the viewpoint of the light source. A copy of the transformed environment is made for later use. Hidden surfaces are removed from the object environment leaving only the illuminated polygons. The second shadow matrix is then used to transform the entire copy of the object environment to any environment orienta­tion including the original orientation. The lighted polygons are also transformedby the second shadow matrix and then added to copied polygonal data as lighted details to derive a shadowed coor­dinate data file. Once the shadowed data file is created, only one view matrix is needed to trans­form it to any desirable viewing position. 
+V. FITTING THE ENVIRONMENT INTO THE VIEWBOX 
+In performing the computations for the display of 
+shadows, it is important that the object be en­
+tirely contained by the frustrum of vision emanat­ing from the light source. Areas of the object 
+that exist outside of the viewing area will be 
+clipped and removed, and thus falsely interpreted 
+to be in shadow. Therefore, the entire object must be within the boundaries of the viewing area. 
+By performing shadow calculations in object space with the polygon clipping method of hidden surface 
+removal, the precision may be extended to the machine limits, rather than the display limits. If 
+the coordinate values are stored in integer format, 
+the maximum accuracy of the shadow calculations can 
+be obtained when the following three criteria are 
+met: 
+1) The boundaries of the viewbox of the frustrum of vision are set to correspond to the maxi­mum machine limits (e.g., for a 16 bit com­puter, this corresponds to +32,767). 
+2) The object environment is centered within the viewbox. 
+3) The object environment is then scaled as large as possible to fit within the viewbox. 
+To accomplish this, the extreme three-dimensional coordinates of the original object are used to form the minimum rectangular solid containing the entire environment. The centroid of this volume is then centered in the viewbox and scaled as large as possible with the constraint that all portions of the bounding volume remain within the viewbox window. 

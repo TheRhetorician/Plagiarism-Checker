@@ -1,0 +1,4 @@
+Hex Code            Instruction
+00a64020            add $t0 $a1 $a2
+00a64822            sub $t1 $a1 $a2
+34020005            ori $v0 $zero 5

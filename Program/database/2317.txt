@@ -1,0 +1,69 @@
+VI. DISPLAY OF SHADOWED IMAGES 
+Since the three-dimensionalpolygon coordinate data is maintained to the limits of machine precision, images created by the hidden surface removal system can be displayed accurately on many different per­ipheral devices. The two basic types of displays used are hidden line removed vector displays and hidden surface removed halftone displays (Figure 4). 
+The vector displays are only concerned with drawing the lines or borders of each polygon and are inher­ently faster than the halftone displays. Further­more, the display is more accurate due to the avail­able resolution of the standard vector displays. Details may be visualized easily, but the depth perception is not nearly as effective as with the halftone displays. 
+For color raster displays, all visible surfaces of 
+the environment must be rendered. This is achieved 
+with the aid of a set of software routines which 
+can render an arbitrary concave polygon with holes 
+with a selected color. Colors and shades can be 
+interactively selected or automatically computed 
+for each polygon surface. For black and white 
+images, the shade of gray selected for a particular 
+polygon is dependent upon the angle between a ray 
+extending from the light source to the polygon and 
+the normal of the polygon. Strictly speaking, sha­
+dowed surfaces would be rendered black. To aid in 
+image visualization, the shadowed surfaces utilize 
+a darker gray range of the gray scale than that 
+used for the lighted surfaces. To produce a color 
+image, the same type of intensity scale is applied 
+to the particular ratio of basic hues (red, green and blue) defining the color. The ratio of the 
+primary hues used remains the same and only the in­
+tensity varies. 
+VII. SHADOW DISPLAYS WITH MULTIPLE LIGHT SOURCES 
+Shadowed images with more than one light source can be made by a single pass through the hidden surface 
+removal program from each light source viewpoint. 
+Shadow data files may be utilized in the same man­ner as any other polygon data file that can be used by the hidden surface removal system since the same coordinate polygonal data structure has been main­
+tained. The shadow data file may be transformed by a single matrix to any desired viewing orienta­
+tion. It may also be used as a data file to which 
+an additionalset of shadows from another light 
+source may be added (Figure 6 and 7). By main­
+taining the polygonal data structure throughout the 
+hidden surface removal system, new possibilitiesin 
+the area of graphic shadow generation such as the 
+casting of shadows through translucent surfaces and 
+the study of multiple reflections of light can be 
+accomplished. 
+VIII. SHADOW APPLICATIONS 
+Since the object space computations are carried out to the limits of machine precision, numerical ana­lysis of shadow areas is quite accurate and can be used for such important energy problems as measur­ing the effect of shadows on available solar energy or the reduction of air conditioning load. For a full yearly analysis, these effects need to be eval­uated on an hourly basis, requiring an immense amount of computation time for complex environ­ments.9 Methods are presently being developed to predict hourly shadow areas based on the calculated results for a limited number of known solar posi­tions. 
+Used as a graphical tool, designers may visually "walk through" a simulated site and see exactly where the shadows may fall at various times and on different days (Figure 8). This visual technique is much more effective than numerical output. The actual locations of shadows become obvious, and possible solutions to architectural design or light­ing problems are readily apparent. A designer may interactivelymove or change a structure and con­tinuously examine the results. 
+IX. CONCLUSION 
+The polygon shadow generation approach presented is 
+both accurate and versatile. It would seem appar­
+ent that with the continuing advances in display 
+hardware, the production of higher resolution ras­
+ter scan programs will become more time consuming 
+since their computations are directly related to 
+the display resolution. Thus, it is important to 
+refine this polygon approach in terms of speed and 
+portability as its acceptability and use should 
+certainly increase. 
+Shadows clearly enhance the depth perception and 
+realism of computer generated images but several 
+challenges remain. One problem still existing is 
+the specification of the path through color space which should be used to depict the color changes 
+due to shade and shadows. This aspect is particu­
+larly importantwhen dealing with multiple light 
+sources. Another problem involves finding a method 
+for the modeling of light sources of finite size, 
+such that the cast shadows contain an umbra and 
+penumbra. Each of these problems are subjects for 
+future investigations. 
+ACKNOWLEDGEMENTS 
+The research is part of a project sponsored by the National Science Foundation under grant number DCR74-14694 entitled "Development of Computer Graphics Techniques and Applications." The authors 
+wish to particularly thank Ted Crane and David 
+Bessel for their work in the implementation of the 
+color display system. 
+
+
+
